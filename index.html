@@ -1,123 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Complete To-Do List</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #e3f2fd;
-      text-align: center;
-      padding: 40px;
-    }
-    input {
-      padding: 10px;
-      width: 250px;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 15px;
-      background-color: #1976d2;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      margin-left: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0d47a1;
-    }
-    .task {
-      background: white;
-      margin: 10px auto;
-      padding: 10px;
-      width: 350px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .done {
-      text-decoration: line-through;
-      color: gray;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>MyToDo App</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <h1>📅 MyToDo - Date-wise Task Planner</h1>
 
-<h2>My Complete To-Do List</h2>
-<input type="text" id="taskInput" placeholder="কাজ লিখো...">
-<button onclick="addTask()">Add</button>
+  <div class="input-area">
+    <label for="task-date">Select Date:</label>
+    <input type="date" id="task-date" />
 
-<div id="taskList"></div>
+    <input type="text" id="task-input" placeholder="Enter your task" />
+    <button onclick="addTask()">Add Task</button>
+  </div>
 
-<script>
-  // লোকাল স্টোরেজ থেকে কাজ লোড করা
-  window.onload = function() {
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.forEach(task => {
-      addTaskToDOM(task.text, task.done);
-    });
-  };
+  <div id="task-list"></div>
 
-  // DOM এ কাজ যোগ করার ফাংশন
-  function addTaskToDOM(taskText, done = false) {
-    const taskList = document.getElementById("taskList");
+  <footer>
+    Developed by <strong>Mahmudul Arefin Rafi</strong> © 2025
+  </footer>
 
-    const taskDiv = document.createElement("div");
-    taskDiv.className = "task";
-
-    const taskContent = document.createElement("span");
-    taskContent.textContent = taskText;
-    if(done) taskContent.classList.add("done");
-
-    const doneBtn = document.createElement("button");
-    doneBtn.textContent = "✅ Done";
-    doneBtn.onclick = function () {
-      taskContent.classList.toggle("done");
-      updateLocalStorage();
-    };
-
-    const delBtn = document.createElement("button");
-    delBtn.textContent = "❌ Delete";
-    delBtn.onclick = function () {
-      taskDiv.remove();
-      updateLocalStorage();
-    };
-
-    taskDiv.appendChild(taskContent);
-    taskDiv.appendChild(doneBtn);
-    taskDiv.appendChild(delBtn);
-
-    taskList.appendChild(taskDiv);
-  }
-
-  // Add বাটন ক্লিক ফাংশন
-  function addTask() {
-    const taskInput = document.getElementById("taskInput");
-    const taskText = taskInput.value.trim();
-    if (taskText === "") {
-      alert("কিছু লিখো আগে!");
-      return;
-    }
-    addTaskToDOM(taskText);
-    updateLocalStorage();
-    taskInput.value = "";
-  }
-
-  // LocalStorage আপডেট করার ফাংশন
-  function updateLocalStorage() {
-    const tasks = [];
-    document.querySelectorAll("#taskList .task").forEach(taskDiv => {
-      const text = taskDiv.querySelector("span").textContent;
-      const done = taskDiv.querySelector("span").classList.contains("done");
-      tasks.push({text: text, done: done});
-    });
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }
-</script>
-<footer style="text-align:center; margin-top: 40px; font-size: 14px; color: gray;">
-  Developed by <strong>Mahmudul Arefin Rafi</strong> © 2025
-</footer>
+  <script src="script.js"></script>
 </body>
 </html>
