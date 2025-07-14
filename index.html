@@ -4,29 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MyToSo - DateWise Task Planner</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <header>
-    MyToSo - DateWise Task Planner
-    <button id="toggleTheme" aria-label="Toggle Dark/Light Mode" title="Toggle Dark/Light Mode">🌙</button>
-  </header>
+  <header>MyToSo - DateWise Task Planner</header>
 
   <main>
-    <form id="taskForm" autocomplete="off">
+    <form id="taskForm">
       <input type="date" id="taskDate" required />
-      <input type="text" id="taskInput" placeholder="Add your task here..." required />
-      <select id="taskPriority" title="Select Priority" required>
-        <option value="" disabled selected>Priority</option>
-        <option value="high">High 🔥</option>
-        <option value="medium">Medium ⚡</option>
-        <option value="low">Low 🌿</option>
-      </select>
+      <input type="text" id="taskInput" placeholder="Add your task..." required />
       <button type="submit">Add</button>
     </form>
-
-    <button id="clearAll" title="Clear All Tasks">Clear All Tasks</button>
 
     <div id="tasksContainer"></div>
   </main>
