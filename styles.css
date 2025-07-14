@@ -1,46 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background: #f0f4f8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #073642;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+  background: #005f73;
+  color: white;
+  padding: 20px 15px;
   text-align: center;
-  margin: 20px;
-  background-color: #f5f5f5;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  position: relative;
 }
 
-.input-area {
-  margin-bottom: 20px;
-}
-
-input, button {
-  padding: 8px;
-  margin: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  background-color: #4CAF50;
+#toggleTheme {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
   color: white;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+#toggleTheme:hover {
+  transform: translateY(-50%) scale(1.2);
 }
 
-h3 {
-  margin-top: 30px;
-  color: #333;
-}
-
-#task-list {
-  margin-top: 30px;
-  text-align: left;
+main {
+  flex: 1;
+  padding: 20px 15px;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  background: white;
+  margin: 0 auto;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+  background: #e0fbfc;
   padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  align-items: center;
+}
+
+input[type="date"],
+input[type="text"],
+select {
+  padding: 12px 15px;
+  font-size: 1.1rem;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  border: 1.5px solid #94d2bd;
+  flex: 1;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #0a9396;
+  outline: none;
+}
+
+button[type="submit"] {
+  background: #0a9396;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+  min-width: 100px;
+}
+
+button[type="submit"]:hover {
+  background: #005f73;
+}
+
+#clearAll {
+  background: #ee6c4d;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  width: 100%;
+  max-width: 600px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+#clearAll:hover {
+  background: #9b2226;
+}
+
+.date-section {
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.date-section:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.date-section h3 {
+  margin: 0 0 10px;
+  color: #005f73;
+  border-bottom: 2px solid #0a9396;
+  padding-bottom: 5px;
+  font-size: 1.3rem;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: #d9f0f1;
+  font-size: 1.1rem;
+  cursor: default;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+li:hover {
+  background: #b4dfe5;
+}
+
+li.done span.task-text {
+  text-decoration: line-through;
+  color: #7a7a7a;
+  opacity: 0.7;
+}
+
+.task-text {
+  flex: 1;
+  padding-right: 10px;
+  user-select: none;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+li:hover .buttons {
+  opacity: 1;
+}
+
+.btn-done, .btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-done {
+  background: #94d2bd;
+  color: #005f73;
+}
+
+.btn-done:hover {
+  background: #0a9396;
+  color: white;
+}
+
+.btn-delete {
+  background: #ee6c4d;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #9b2226;
 }
 
 footer {
-  margin-top: 50px;
-  font-size: 14px;
-  color: gray;
+  text-align: center;
+  padding: 15px 10px;
+  background: #005f73;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
+}
+
+/* Dark Mode Styles */
+body.dark {
+  background: #002b36;
+  color: #eee8d5;
+}
+
+body.dark header {
+  background: #073642;
+  color: #eee8d5;
+}
+
+body.dark form {
+  background: #073642;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.dark input[type="date"],
+body.dark input[type="text"],
+body.dark select {
+  background: #002b36;
+  border-color: #586e75;
+  color: #eee8d5;
+}
+
+body.dark input:focus,
+body.dark select:focus {
+  border-color: #839496;
+}
+
+body.dark button[type="submit"] {
+  background: #586e75;
+  color: #eee8d5;
+}
+
+body.dark button[type="submit"]:hover {
+  background: #073642;
+}
+
+body.dark #clearAll {
+  background: #9b2c2c;
+}
+
+body.dark #clearAll:hover {
+  background: #d9534f;
+}
+
+body.dark .date-section {
+  background: #073642;
+  box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+}
+
+body.dark .date-section:hover {
+  box-shadow: 0 6px 16px rgba(255,255,255,0.2);
+}
+
+body.dark li {
+  background: #004d40;
+  color: #eee8d5;
+}
+
+body.dark li:hover {
+  background: #00695c;
+}
+
+body.dark li.done span.task-text {
+  color: #839496;
+  opacity: 0.7;
+}
+
+body.dark .btn-done {
+  background: #80cbc4;
+  color: #004d40;
+}
+
+body.dark .btn-done:hover {
+  background: #004d40;
+  color: #80cbc4;
+}
+
+body.dark .btn-delete {
+  background: #d32f2f;
+  color: #eee8d5;
+}
+
+body.dark .btn-delete:hover {
+  background: #b71c1c;
+}
+
+body.dark footer {
+  background: #073642;
+  color: #eee8d5;
+}
+
+/* Priority Colors */
+li[data-priority="high"] {
+  border-left: 6px solid #d90429;
+}
+
+li[data-priority="medium"] {
+  border-left: 6px solid #f48c06;
+}
+
+li[data-priority="low"] {
+  border-left: 6px solid #2a9d8f;
+}
+
+/* Responsive & Bigger font for mobiles */
+@media (max-width: 480px) {
+  body {
+    font-size: 18px;
+  }
+
+  input, select, button {
+    font-size: 1.3rem;
+    padding: 15px;
+  }
+
+  li {
+    font-size: 1.3rem;
+    padding: 14px 12px;
+  }
+
+  header {
+    font-size: 2rem;
+  }
+
+  footer {
+    font-size: 1.2rem;
+  }
 }
