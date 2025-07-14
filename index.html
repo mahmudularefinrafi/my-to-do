@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>MyToDo App</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyToSo - DateWise Task Planner</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>📅 MyToDo - Date-wise Task Planner</h1>
 
-  <div class="input-area">
-    <label for="task-date">Select Date:</label>
-    <input type="date" id="task-date" />
+  <header>
+    MyToSo - DateWise Task Planner
+    <button id="toggleTheme" aria-label="Toggle Dark/Light Mode" title="Toggle Dark/Light Mode">🌙</button>
+  </header>
 
-    <input type="text" id="task-input" placeholder="Enter your task" />
-    <button onclick="addTask()">Add Task</button>
-  </div>
+  <main>
+    <form id="taskForm" autocomplete="off">
+      <input type="date" id="taskDate" required />
+      <input type="text" id="taskInput" placeholder="Add your task here..." required />
+      <select id="taskPriority" title="Select Priority" required>
+        <option value="" disabled selected>Priority</option>
+        <option value="high">High 🔥</option>
+        <option value="medium">Medium ⚡</option>
+        <option value="low">Low 🌿</option>
+      </select>
+      <button type="submit">Add</button>
+    </form>
 
-  <div id="task-list"></div>
+    <button id="clearAll" title="Clear All Tasks">Clear All Tasks</button>
+
+    <div id="tasksContainer"></div>
+  </main>
 
   <footer>
-    Developed by <strong>Mahmudul Arefin Rafi</strong> © 2025
+    Developed by Mahmudul Arefin Rafi
   </footer>
 
   <script src="script.js"></script>
